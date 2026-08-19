@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Plus, Pencil, Trash2, ImageOff } from 'lucide-react'
+import { Plus, Pencil, Trash2, ImageOff, ImagePlus, X } from 'lucide-react'
 import { useProducts, useCategories, addCategory, updateCategory, deleteCategory } from '../../store/catalog'
 import { useToast } from '../../context/ToastContext'
+import { fileToDataUrl } from '../../utils/image'
 import Modal from '../../components/ui/Modal'
 import Input from '../../components/ui/Input'
 import Button from '../../components/ui/Button'
@@ -36,6 +37,19 @@ export default function AdminCategories() {
   }
 
   const countFor = (slug) => products.filter((p) => p.category === slug).length
+
+  const handleImageUpload = async (e) => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    try {
+      const url = await fileToDataUrl(file)
+      setForm((f) => ({ ...f, image: url }))
+      toast('Image uploaded', 'success')
+    } catch {
+      toast('Could not read that image file', 'error')
+    }
+  }
 
   const submit = (e) => {
     e.preventDefault()
@@ -190,7 +204,40 @@ export default function AdminCategories() {
       <Modal open={formOpen} onClose={() => setFormOpen(false)} title={editing ? 'Edit Category' : 'Add Category'} size="sm">
         <form onSubmit={submit} className="space-y-5 p-6">
           <Input label="Category name *" value={form.name} onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))} placeholder="e.g. Outdoor Gear" required />
-          <Input label="Category image URL" value={form.image} onChange={(e) => setForm((f) => ({ ...f, image: e.target.value }))} placeholder="https://…" />
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">
+              Category image
+            </label>
+            <div className="flex flex-wrap items-center gap-3">
+              <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-line bg-canvas/50 px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-primary/40">
+                <ImagePlus size={15} /> Upload from device
+                <input type="file" accept="image/*" onChange={handleImageUpload} className="hidden" />
+              </label>
+              {form.image && (
+                <button
+                  type="button"
+                  onClick={() => setForm((f) => ({ ...f, image: '' }))}
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-red-500 transition hover:underline"
+                >
+                  <X size={13} /> Remove
+                </button>
+              )}
+            </div>
+            <input
+              type="text"
+              value={form.image.startsWith('data:') ? '' : form.image}
+              onChange={(e) => setForm((f) => ({ ...f, image: e.target.value }))}
+              placeholder="…or paste an image URL (https://…)"
+              className="mt-3 h-11 w-full rounded-xl border border-line bg-surface px-4 text-sm text-ink placeholder:text-muted/70 outline-none transition-all duration-300 focus:border-primary focus:ring-2 focus:ring-primary/15"
+            />
+            {form.image && (
+              <img
+                src={form.image}
+                alt="Image preview"
+                className="mt-3 h-24 w-24 rounded-xl border border-line object-cover"
+              />
+            )}
+          </div>
           <div>
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">Description</label>
             <textarea
