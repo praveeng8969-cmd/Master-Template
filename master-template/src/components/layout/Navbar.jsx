@@ -180,7 +180,7 @@ export default function Navbar() {
             </button>
 
             {/* User menu */}
-            <div className="relative hidden sm:block">
+            <div className="relative block">
               <button
                 onClick={() => setUserOpen((o) => !o)}
                 aria-label="Account"
