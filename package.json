@@ -1,0 +1,8 @@
+{
+  "name": "master-template-repo",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "build": "npm --prefix master-template run build"
+  }
+}
