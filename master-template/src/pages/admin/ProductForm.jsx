@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { ChevronLeft } from 'lucide-react'
+import { ChevronLeft, ImagePlus, X } from 'lucide-react'
 import { useProducts, useCategories, addProduct, updateProduct } from '../../store/catalog'
 import { useToast } from '../../context/ToastContext'
+import { fileToDataUrl } from '../../utils/image'
 import Input from '../../components/ui/Input'
 import Button from '../../components/ui/Button'
 
@@ -93,6 +94,32 @@ export default function ProductForm() {
   }, [editing?.id])
 
   const set = (key) => (e) => setForm((f) => ({ ...f, [key]: e.target.value }))
+
+  const handleMainImage = async (e) => {
+    const file = e.target.files?.[0]
+    e.target.value = ''
+    if (!file) return
+    try {
+      const url = await fileToDataUrl(file)
+      setForm((f) => ({ ...f, image: url }))
+      toast('Image uploaded', 'success')
+    } catch {
+      toast('Could not read that image file', 'error')
+    }
+  }
+
+  const handleExtraImages = async (e) => {
+    const files = Array.from(e.target.files || [])
+    e.target.value = ''
+    if (!files.length) return
+    try {
+      const urls = await Promise.all(files.map((file) => fileToDataUrl(file)))
+      setForm((f) => ({ ...f, extraImages: [f.extraImages, ...urls].filter(Boolean).join('\n') }))
+      toast(`${urls.length} image${urls.length > 1 ? 's' : ''} uploaded`, 'success')
+    } catch {
+      toast('Could not read those image files', 'error')
+    }
+  }
 
   const discount = useMemo(() => {
     const price = Number(form.price)
@@ -211,8 +238,8 @@ export default function ProductForm() {
           </div>
 
           <div className="grid gap-5 sm:grid-cols-3">
-            <Input label="Selling price ($) *" type="number" min="0" step="0.01" value={form.price} onChange={set('price')} />
-            <Input label="Original price ($)" type="number" min="0" step="0.01" value={form.oldPrice} onChange={set('oldPrice')} />
+            <Input label="Selling price (₹) *" type="number" min="0" step="0.01" value={form.price} onChange={set('price')} />
+            <Input label="Original price (₹)" type="number" min="0" step="0.01" value={form.oldPrice} onChange={set('oldPrice')} />
             <Input label="Stock quantity *" type="number" min="0" value={form.stock} onChange={set('stock')} />
           </div>
 
@@ -222,17 +249,55 @@ export default function ProductForm() {
             <span className="ml-2 text-xs">(auto-calculated from the original price)</span>
           </div>
 
-          <Input label="Product image URL" value={form.image} onChange={set('image')} placeholder="https://…" />
           <div>
             <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">
-              Additional image URLs
+              Product image *
+            </label>
+            <div className="flex flex-wrap items-center gap-3">
+              <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-line bg-canvas/50 px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-primary/40">
+                <ImagePlus size={15} /> Upload from device
+                <input type="file" accept="image/*" onChange={handleMainImage} className="hidden" />
+              </label>
+              {form.image && (
+                <button
+                  type="button"
+                  onClick={() => setForm((f) => ({ ...f, image: '' }))}
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-red-500 transition hover:underline"
+                >
+                  <X size={13} /> Remove
+                </button>
+              )}
+            </div>
+            <input
+              type="text"
+              value={form.image.startsWith('data:') ? '' : form.image}
+              onChange={set('image')}
+              placeholder="…or paste an image URL (https://…)"
+              className="mt-3 h-11 w-full rounded-xl border border-line bg-surface px-4 text-sm text-ink placeholder:text-muted/70 outline-none transition-all duration-300 focus:border-primary focus:ring-2 focus:ring-primary/15"
+            />
+            {form.image && (
+              <img
+                src={form.image}
+                alt="Image preview"
+                className="mt-3 h-24 w-24 rounded-xl border border-line object-cover"
+              />
+            )}
+          </div>
+
+          <div>
+            <label className="mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted">
+              Additional images
+            </label>
+            <label className="inline-flex cursor-pointer items-center gap-2 rounded-xl border border-line bg-canvas/50 px-4 py-2.5 text-sm font-semibold text-ink transition hover:border-primary/40">
+              <ImagePlus size={15} /> Upload images from device
+              <input type="file" accept="image/*" multiple onChange={handleExtraImages} className="hidden" />
             </label>
             <textarea
               value={form.extraImages}
               onChange={set('extraImages')}
               rows={2}
-              placeholder="One URL per line"
-              className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink placeholder:text-muted/70 outline-none transition-all duration-300 focus:border-primary focus:ring-2 focus:ring-primary/15"
+              placeholder="One image URL per line"
+              className="mt-3 w-full rounded-xl border border-line bg-surface px-4 py-3 text-sm text-ink placeholder:text-muted/70 outline-none transition-all duration-300 focus:border-primary focus:ring-2 focus:ring-primary/15"
             />
           </div>
 
