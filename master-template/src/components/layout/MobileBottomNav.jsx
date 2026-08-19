@@ -1,33 +1,35 @@
 import { NavLink } from 'react-router-dom'
-import { Home, ShoppingBag, LayoutGrid, Info, Phone } from 'lucide-react'
+import { House, ShoppingBag, LayoutGrid, Info, Mail } from 'lucide-react'
 
 const items = [
-  { label: 'Home', to: '/', icon: Home },
+  { label: 'Home', to: '/', icon: House },
   { label: 'Shop', to: '/shop', icon: ShoppingBag },
-  { label: 'Categories', to: '/categories', icon: LayoutGrid },
+  { label: 'Category', to: '/categories', icon: LayoutGrid },
   { label: 'About', to: '/about', icon: Info },
-  { label: 'Contact', to: '/contact', icon: Phone },
+  { label: 'Contact', to: '/contact', icon: Mail },
 ]
 
-/** Floating bottom navigation pill — shown on all screen sizes. */
+/** Fixed full-width bottom navigation — mobile only (hidden on lg+). */
 export default function MobileBottomNav() {
   return (
     <nav
-      className="fixed inset-x-3 bottom-3 z-40 lg:inset-x-auto lg:left-1/2 lg:-translate-x-1/2"
+      aria-label="Main navigation"
+      className="fixed inset-x-0 bottom-0 z-50 border-t border-line bg-surface/95 backdrop-blur-md lg:hidden"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
-      <div className="mx-auto flex max-w-md items-stretch justify-between gap-1 rounded-full border border-line bg-surface/95 px-2 py-1.5 shadow-lift backdrop-blur-md">
+      <div className="grid grid-cols-5">
         {items.map(({ label, to, icon: Icon }) => (
           <NavLink
             key={to}
             to={to}
+            aria-label={label}
             className={({ isActive }) =>
-              `flex flex-1 flex-col items-center gap-0.5 rounded-full px-2 py-1.5 text-[10px] font-semibold transition ${
-                isActive ? 'bg-primary/10 text-primary' : 'text-muted hover:text-ink'
+              `flex min-h-[60px] flex-col items-center justify-center gap-1 px-1 text-[10px] font-semibold transition-colors ${
+                isActive ? 'text-primary' : 'text-muted hover:text-ink'
               }`
             }
           >
-            <Icon size={17} />
+            <Icon size={18} />
             {label}
           </NavLink>
         ))}

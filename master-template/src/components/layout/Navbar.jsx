@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react'
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
-  Search, Heart, ShoppingBag, Menu, X, Sun, Moon,
-  ChevronDown, User, Package, Settings, LogOut, Sparkles,
+  Search, Heart, ShoppingBag, Sun, Moon,
+  User, Package, Settings, LogOut, Sparkles,
 } from 'lucide-react'
 import { siteConfig } from '../../config/site'
 import { useSettings } from '../../store/catalog'
@@ -60,14 +60,12 @@ export default function Navbar() {
   const isHome = pathname === '/'
   const { cartCount, wishlist, setCartOpen, setWishlistOpen, setSearchOpen } = useStore()
   const { dark, toggleTheme } = useTheme()
-  const [mobileOpen, setMobileOpen] = useState(false)
   const [userOpen, setUserOpen] = useState(false)
 
   // Transparent over hero (home at top) → glass when scrolled
   const transparent = isHome && !scrolled
 
   useEffect(() => {
-    setMobileOpen(false)
     setUserOpen(false)
   }, [pathname])
 
@@ -82,15 +80,6 @@ export default function Navbar() {
         }`}
       >
         <nav className="container-x flex h-16 items-center justify-between gap-4 lg:h-[76px]">
-          {/* Mobile hamburger */}
-          <button
-            className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink lg:hidden"
-            onClick={() => setMobileOpen(true)}
-            aria-label="Open menu"
-          >
-            <Menu size={18} />
-          </button>
-
           {/* Logo */}
           <Logo className={`text-xl ${transparent ? 'text-white dark:text-white' : ''}`} />
 
@@ -229,59 +218,6 @@ export default function Navbar() {
           </div>
         </nav>
       </header>
-
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <div className="fixed inset-0 z-[70] lg:hidden">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setMobileOpen(false)}
-              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-              className="absolute left-0 top-0 flex h-full w-80 max-w-[85%] flex-col bg-canvas p-6"
-            >
-              <div className="mb-8 flex items-center justify-between">
-                <Logo />
-                <button
-                  onClick={() => setMobileOpen(false)}
-                  className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink"
-                  aria-label="Close menu"
-                >
-                  <X size={16} />
-                </button>
-              </div>
-              <nav className="flex flex-col gap-1">
-                {links.map((l) => (
-                  <NavLink
-                    key={l.to}
-                    to={l.to}
-                    className={({ isActive }) =>
-                      `flex items-center justify-between rounded-xl px-4 py-3 text-sm font-medium transition ${
-                        isActive ? 'bg-primary/5 text-primary' : 'text-ink/80 hover:bg-line/40'
-                      }`
-                    }
-                  >
-                    {l.label}
-                    <ChevronDown size={14} className="rotate-[-90deg] text-muted" />
-                  </NavLink>
-                ))}
-              </nav>
-              <div className="mt-auto space-y-3 border-t border-line pt-6">
-                <p className="text-xs text-muted">{siteConfig.contact.phone}</p>
-                <p className="text-xs text-muted">{siteConfig.contact.email}</p>
-              </div>
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
     </>
   )
 }

@@ -101,7 +101,7 @@ function AppShell() {
       {!isAdmin && (
         <>
           <MobileBottomNav />
-          <div className="h-20" aria-hidden />
+          <div className="h-20 lg:hidden" aria-hidden />
           <CartDrawer />
           <WishlistDrawer />
           <SearchOverlay />
