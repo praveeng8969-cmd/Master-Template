@@ -1,0 +1,14 @@
+[
+  { "id": "sonicwave", "name": "SonicWave" },
+  { "id": "technova", "name": "TechNova" },
+  { "id": "lumen", "name": "Lumen" },
+  { "id": "novatech", "name": "NovaTech" },
+  { "id": "mobileco", "name": "MobileCo" },
+  { "id": "loomco", "name": "Loom & Co" },
+  { "id": "nordica", "name": "Nordica" },
+  { "id": "pureglow", "name": "PureGlow" },
+  { "id": "maisonnoir", "name": "Maison Noir" },
+  { "id": "meridian", "name": "Meridian" },
+  { "id": "trailblazer", "name": "Trailblazer" },
+  { "id": "paperink", "name": "Paper & Ink" }
+]

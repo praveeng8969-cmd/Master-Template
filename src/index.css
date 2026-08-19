@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ------------------------------------------------------------------ */
+/*  Design tokens — the entire theme can be re-tinted from            */
+/*  src/config/site.js (colors are injected at runtime as CSS vars).  */
+/* ------------------------------------------------------------------ */
+:root {
+  --canvas: 247 247 247;
+  --surface: 255 255 255;
+  --ink: 10 10 10;
+  --muted: 115 115 115;
+  --line: 230 230 230;
+  --primary: 10 10 10;
+  --secondary: 115 115 115;
+  --accent: 10 10 10;
+  --primary-contrast: 255 255 255;
+}
+
+.dark {
+  --canvas: 10 10 10;
+  --surface: 23 23 23;
+  --ink: 250 250 250;
+  --muted: 163 163 163;
+  --line: 40 40 40;
+  --primary: 250 250 250;
+  --secondary: 163 163 163;
+  --accent: 250 250 250;
+  --primary-contrast: 10 10 10;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  html,
+  body {
+    overflow-x: clip;
+  }
+  body {
+    @apply bg-canvas text-ink font-sans antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  ::selection {
+    background: rgb(var(--primary));
+    color: rgb(var(--primary-contrast));
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--line));
+    border-radius: 999px;
+    border: 2px solid rgb(var(--canvas));
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--muted));
+  }
+}
+
+@layer components {
+  /* Frosted glass panel */
+  .glass {
+    @apply bg-surface/70 backdrop-blur-xl border border-line/60;
+  }
+
+  /* Eyebrow label used above section titles */
+  .eyebrow {
+    @apply text-[11px] font-semibold uppercase tracking-widest2 text-muted;
+  }
+
+  /* Container */
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section vertical rhythm */
+  .section {
+    @apply py-16 sm:py-20 lg:py-28;
+  }
+
+  /* Skeleton shimmer block */
+  .skeleton {
+    @apply relative overflow-hidden bg-line/60 rounded-xl;
+  }
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0 animate-shimmer;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(var(--surface)) 45%,
+      rgb(var(--line)) 55%,
+      transparent
+    );
+    background-size: 400px 100%;
+  }
+
+  /* Ripple effect for buttons */
+  .ripple-host {
+    @apply relative overflow-hidden;
+  }
+  .ripple {
+    position: absolute;
+    border-radius: 9999px;
+    transform: scale(0);
+    animation: ripple 0.65s ease-out forwards;
+    background: rgba(255, 255, 255, 0.45);
+    pointer-events: none;
+  }
+  .ripple-dark {
+    background: rgba(10, 10, 10, 0.18);
+  }
+  @keyframes ripple {
+    to {
+      transform: scale(3.2);
+      opacity: 0;
+    }
+  }
+
+  /* Section title */
+  .section-title {
+    @apply font-display text-3xl sm:text-4xl lg:text-[2.75rem] leading-tight text-ink;
+  }
+}
+
+/* ------------------------------------------------------------------ */
+/*  Swiper overrides                                                   */
+/* ------------------------------------------------------------------ */
+.swiper-button-next,
+.swiper-button-prev {
+  @apply hidden lg:flex;
+  width: 44px !important;
+  height: 44px !important;
+  background: rgb(var(--surface));
+  border: 1px solid rgb(var(--line));
+  border-radius: 9999px;
+  color: rgb(var(--ink)) !important;
+  transition: all 0.25s ease;
+  box-shadow: 0 8px 24px -10px rgba(10, 10, 10, 0.2);
+}
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+  background: rgb(var(--primary));
+  color: rgb(var(--primary-contrast)) !important;
+}
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 14px !important;
+  font-weight: 700;
+}
+.swiper-pagination-bullet {
+  background: rgb(var(--muted)) !important;
+  opacity: 0.4 !important;
+}
+.swiper-pagination-bullet-active {
+  opacity: 1 !important;
+  width: 22px !important;
+  border-radius: 999px !important;
+  background: rgb(var(--primary)) !important;
+}
+
+/* Hide scrollbar utility for horizontal scrollers */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Zoomed product image (quick view / details) */
+.zoom-image {
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}

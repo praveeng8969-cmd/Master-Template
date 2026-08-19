@@ -1,0 +1,122 @@
+[
+  {
+    "id": 1,
+    "productId": 1,
+    "name": "Daniel R.",
+    "rating": 5,
+    "date": "2026-06-18",
+    "title": "Flawless sound, gorgeous finish",
+    "text": "The build quality is outstanding and the soundstage is surprisingly wide for wireless headphones. Battery easily lasts my whole work week.",
+    "verified": true
+  },
+  {
+    "id": 2,
+    "productId": 3,
+    "name": "Priya S.",
+    "rating": 5,
+    "date": "2026-06-12",
+    "title": "Worth every penny",
+    "text": "I've used this camera for two weddings already and the autofocus is lightning fast. The packaging felt genuinely premium.",
+    "verified": true
+  },
+  {
+    "id": 3,
+    "productId": 17,
+    "name": "Marcus T.",
+    "rating": 4,
+    "date": "2026-05-30",
+    "title": "Beautiful, comfortable sofa",
+    "text": "Took a few minutes to unpack but the quality is superb. Deep cushions and the fabric feels expensive. One star off for delivery time.",
+    "verified": true
+  },
+  {
+    "id": 4,
+    "productId": 27,
+    "name": "Elena V.",
+    "rating": 5,
+    "date": "2026-05-21",
+    "title": "My signature scent now",
+    "text": "Smells sophisticated — woody with a soft floral heart. Longevity is around 8 hours on skin. Compliments every single day.",
+    "verified": true
+  },
+  {
+    "id": 5,
+    "productId": 14,
+    "name": "Amelia K.",
+    "rating": 5,
+    "date": "2026-05-14",
+    "title": "Elevates every outfit",
+    "text": "The leather is buttery soft and the interior pockets are so practical. Fits my 13-inch laptop with room to spare.",
+    "verified": true
+  },
+  {
+    "id": 6,
+    "productId": 42,
+    "name": "James H.",
+    "rating": 5,
+    "date": "2026-05-08",
+    "title": "A beautiful hardcover",
+    "text": "Stunning print quality and the paper feels wonderful. The writing is quietly profound. Highly recommend.",
+    "verified": false
+  },
+  {
+    "id": 7,
+    "productId": 8,
+    "name": "Sofia L.",
+    "rating": 4,
+    "date": "2026-04-27",
+    "title": "Great phone, great value",
+    "text": "Camera is incredible in low light and the battery lasts a full day easily. Slightly slippery without a case.",
+    "verified": true
+  },
+  {
+    "id": 8,
+    "productId": 31,
+    "name": "Oliver W.",
+    "rating": 5,
+    "date": "2026-04-19",
+    "title": "An heirloom piece",
+    "text": "The automatic movement is mesmerizing to watch. Keeps excellent time and pairs with everything I wear.",
+    "verified": true
+  },
+  {
+    "id": 9,
+    "productId": 25,
+    "name": "Grace N.",
+    "rating": 5,
+    "date": "2026-04-11",
+    "title": "My skin has never looked better",
+    "text": "Two weeks in and my dark spots have visibly faded. Non-greasy and absorbs quickly. Repurchasing for sure.",
+    "verified": true
+  },
+  {
+    "id": 10,
+    "productId": 37,
+    "name": "Tom B.",
+    "rating": 5,
+    "date": "2026-04-02",
+    "title": "Featherlight and safe",
+    "text": "Barely notice it on my head and the airflow is excellent on long rides. Fit dial is easy to adjust with gloves on.",
+    "verified": true
+  },
+  {
+    "id": 11,
+    "productId": 9,
+    "name": "Lily M.",
+    "rating": 4,
+    "date": "2026-03-25",
+    "title": "Great on-the-go earbuds",
+    "text": "Crisp highs and punchy bass. Case is compact and charges fast. Wish the fit was a touch more secure for runs.",
+    "verified": true
+  },
+  {
+    "id": 12,
+    "productId": 20,
+    "name": "Henry F.",
+    "rating": 5,
+    "date": "2026-03-17",
+    "title": "Instant room upgrade",
+    "text": "The warm light casts a gorgeous glow in the evening. Solid brass base feels heavy and premium.",
+    "verified": true
+  }
+]

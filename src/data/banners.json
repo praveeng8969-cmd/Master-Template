@@ -1,0 +1,32 @@
+[
+  {
+    "id": "flash",
+    "type": "flash",
+    "title": "Flash Sale",
+    "subtitle": "Up to 40% off this week's top picks",
+    "cta": "Grab the deal",
+    "link": "/shop?badge=Sale",
+    "gradient": "from-neutral-950 via-neutral-800 to-neutral-950",
+    "image": "https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=1600&auto=format&fit=crop"
+  },
+  {
+    "id": "season",
+    "type": "standard",
+    "title": "New Season Essentials",
+    "subtitle": "Fresh arrivals curated for this season",
+    "cta": "Shop new arrivals",
+    "link": "/shop?sort=newest",
+    "gradient": "from-stone-800 via-stone-700 to-neutral-900",
+    "image": "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1600&auto=format&fit=crop"
+  },
+  {
+    "id": "members",
+    "type": "standard",
+    "title": "Members Save 10%",
+    "subtitle": "Join free and earn rewards on every order",
+    "cta": "Join VortexNova",
+    "link": "/contact",
+    "gradient": "from-neutral-900 via-neutral-700 to-neutral-800",
+    "image": "https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=1600&auto=format&fit=crop"
+  }
+]
