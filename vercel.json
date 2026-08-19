@@ -2,5 +2,6 @@
   "framework": "vite",
   "installCommand": "npm --prefix master-template ci",
   "buildCommand": "npm --prefix master-template run build",
-  "outputDirectory": "master-template/dist"
+  "outputDirectory": "master-template/dist",
+  "rewrites": [{ "source": "/(.*)", "destination": "/index.html" }]
 }
