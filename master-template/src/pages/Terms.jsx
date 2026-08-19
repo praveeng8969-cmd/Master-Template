@@ -31,7 +31,7 @@ export default function Terms() {
     {
       title: '4. Shipping & delivery',
       body: [
-        `Delivery estimates are provided at checkout and are not guaranteed arrival dates. Risk of loss passes to you upon delivery. Orders over ${siteConfig.currency === 'USD' ? '$' : ''}${siteConfig.freeShippingThreshold} receive free standard shipping.`,
+        `Delivery estimates are provided at checkout and are not guaranteed arrival dates. Risk of loss passes to you upon delivery. Orders over ₹${siteConfig.freeShippingThreshold} receive free standard shipping.`,
       ],
     },
     {

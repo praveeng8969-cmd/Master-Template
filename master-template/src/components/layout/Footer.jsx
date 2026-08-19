@@ -44,7 +44,7 @@ export default function Footer() {
       <div className="border-b border-line">
         <div className="container-x grid grid-cols-2 gap-6 py-10 md:grid-cols-4">
           {[
-            { icon: Truck, title: 'Free Shipping', text: `Orders over $${settings.freeShippingThreshold}` },
+            { icon: Truck, title: 'Free Shipping', text: `Orders over ₹${settings.freeShippingThreshold}` },
             { icon: RotateCcw, title: '30-Day Returns', text: 'No questions asked' },
             { icon: ShieldCheck, title: 'Secure Checkout', text: 'SSL encrypted payments' },
             { icon: Clock, title: 'Fast Support', text: 'Reply within 24h' },

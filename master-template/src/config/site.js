@@ -17,7 +17,7 @@ export const siteConfig = {
   tagline: 'Premium Lifestyle & Essentials',
   logoImage: null, // e.g. "/logo.png" — when null a styled text logo is rendered
   announcement: [
-    'Complimentary shipping on orders over $99',
+    'Complimentary shipping on orders over ₹99',
     'New season collection — up to 40% off',
     'Sign up for 10% off your first order',
   ],
@@ -41,7 +41,7 @@ export const siteConfig = {
   /* ---------------------------------------------------------------- */
   /*  Currency & money                                                 */
   /* ---------------------------------------------------------------- */
-  currency: 'USD', // ISO code used by Intl formatter (USD, EUR, INR, GBP...)
+  currency: 'INR', // ISO code used by Intl formatter (USD, EUR, INR, GBP...)
   taxRate: 0.08, // 8% tax applied at checkout
   freeShippingThreshold: 99, // free shipping above this subtotal
   shippingFee: 8, // flat shipping fee
@@ -103,7 +103,7 @@ export const siteConfig = {
   },
 
   features: [
-    { icon: 'Truck', title: 'Free Shipping', text: 'On all orders over $99' },
+    { icon: 'Truck', title: 'Free Shipping', text: 'On all orders over ₹99' },
     { icon: 'RotateCcw', title: 'Easy Returns', text: '30-day money-back guarantee' },
     { icon: 'ShieldCheck', title: 'Secure Payment', text: '256-bit SSL checkout' },
     { icon: 'Headphones', title: '24/7 Support', text: 'Real humans, always on' },

@@ -100,7 +100,7 @@ export default function QuickView() {
 
           <div className="mt-7 grid grid-cols-1 gap-3 border-t border-line pt-6 text-xs text-muted">
             <p className="flex items-center gap-2.5">
-              <Truck size={15} className="shrink-0 text-primary" /> Free shipping on orders over $99
+              <Truck size={15} className="shrink-0 text-primary" /> Free shipping on orders over ₹99
             </p>
             <p className="flex items-center gap-2.5">
               <RotateCcw size={15} className="shrink-0 text-primary" /> 30-day easy returns

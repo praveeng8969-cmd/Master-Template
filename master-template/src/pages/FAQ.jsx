@@ -10,7 +10,7 @@ import Button from '../components/ui/Button'
 const faqs = [
   {
     q: 'How long does shipping take?',
-    a: `Standard shipping takes 3–5 business days within the US and 7–12 days internationally. Orders over ${siteConfig.currency === 'USD' ? '$' : ''}${siteConfig.freeShippingThreshold} ship free, and every order gets a tracking link the moment it leaves our warehouse.`,
+    a: `Standard shipping takes 3–5 business days within the US and 7–12 days internationally. Orders over ₹${siteConfig.freeShippingThreshold} ship free, and every order gets a tracking link the moment it leaves our warehouse.`,
   },
   {
     q: 'What is your return policy?',

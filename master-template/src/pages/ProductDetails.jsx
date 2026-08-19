@@ -207,7 +207,7 @@ export default function ProductDetails() {
             {/* Trust badges */}
             <div className="mt-8 grid grid-cols-1 gap-3 rounded-3xl border border-line bg-surface p-6 text-xs text-muted sm:grid-cols-3">
               <p className="flex items-center gap-2.5">
-                <Truck size={16} className="shrink-0 text-primary" /> Free shipping over $99
+                <Truck size={16} className="shrink-0 text-primary" /> Free shipping over ₹99
               </p>
               <p className="flex items-center gap-2.5">
                 <RotateCcw size={16} className="shrink-0 text-primary" /> 30-day returns
