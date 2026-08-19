@@ -26,7 +26,7 @@ export default function FloatingButtons() {
             onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             aria-label="Back to top"
             className={`fixed right-6 z-40 flex h-11 w-11 items-center justify-center rounded-full border border-line bg-surface text-ink shadow-lift transition hover:border-primary hover:text-primary ${
-              waNumber ? 'bottom-24' : 'bottom-6'
+              waNumber ? 'bottom-40 lg:bottom-24' : 'bottom-24 lg:bottom-6'
             }`}
           >
             <ArrowUp size={17} />
@@ -42,7 +42,7 @@ export default function FloatingButtons() {
           aria-label="Chat on WhatsApp"
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.94 }}
-          className="fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-glow"
+          className="fixed bottom-24 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-[#25D366] text-white shadow-glow lg:bottom-6"
           style={{ boxShadow: '0 10px 30px -8px rgba(37, 211, 102, 0.55)' }}
         >
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">

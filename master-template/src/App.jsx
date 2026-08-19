@@ -5,6 +5,7 @@ import { ToastProvider } from './context/ToastContext.jsx'
 import { StoreProvider } from './context/StoreContext.jsx'
 import Navbar from './components/layout/Navbar.jsx'
 import Footer from './components/layout/Footer.jsx'
+import MobileBottomNav from './components/layout/MobileBottomNav.jsx'
 import FloatingButtons from './components/layout/FloatingButtons.jsx'
 import CartDrawer from './components/layout/CartDrawer.jsx'
 import WishlistDrawer from './components/layout/WishlistDrawer.jsx'
@@ -99,6 +100,8 @@ function AppShell() {
       {!isAdmin && <Footer />}
       {!isAdmin && (
         <>
+          <MobileBottomNav />
+          <div className="h-20" aria-hidden />
           <CartDrawer />
           <WishlistDrawer />
           <SearchOverlay />
