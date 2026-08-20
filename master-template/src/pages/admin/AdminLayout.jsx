@@ -1,13 +1,12 @@
-import { useState } from 'react'
 import { Link, NavLink, Outlet, useNavigate } from 'react-router-dom'
-import { AnimatePresence, motion } from 'framer-motion'
 import {
   LayoutDashboard, Package, FolderTree, ClipboardList, Settings,
-  Sun, Moon, LogOut, Menu, X, ShieldCheck,
+  Sun, Moon, LogOut, ShieldCheck,
 } from 'lucide-react'
 import { useTheme } from '../../context/ThemeContext'
 import { logoutAdmin } from '../../store/admin'
 import { useToast } from '../../context/ToastContext'
+import AdminBottomNav from '../../components/admin/AdminBottomNav'
 
 const NAV = [
   { label: 'Dashboard', to: '/admin/dashboard', icon: LayoutDashboard },
@@ -85,8 +84,6 @@ function SidebarContent({ onNavigate }) {
  * with theme toggle and logout.
  */
 export default function AdminLayout() {
-  const [drawerOpen, setDrawerOpen] = useState(false)
-
   return (
     <div className="min-h-screen bg-canvas">
       {/* Desktop sidebar */}
@@ -96,13 +93,6 @@ export default function AdminLayout() {
 
       {/* Mobile top bar */}
       <header className="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-line bg-surface px-4 lg:hidden">
-        <button
-          onClick={() => setDrawerOpen(true)}
-          aria-label="Open admin menu"
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-line text-ink"
-        >
-          <Menu size={18} />
-        </button>
         <div className="flex items-center gap-2">
           <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary font-display text-sm font-bold text-[rgb(var(--primary-contrast))]">
             V
@@ -114,43 +104,15 @@ export default function AdminLayout() {
         </div>
       </header>
 
-      {/* Mobile drawer */}
-      <AnimatePresence>
-        {drawerOpen && (
-          <div className="fixed inset-0 z-[60] lg:hidden">
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setDrawerOpen(false)}
-              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
-            />
-            <motion.div
-              initial={{ x: '-100%' }}
-              animate={{ x: 0 }}
-              exit={{ x: '-100%' }}
-              transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-              className="absolute left-0 top-0 flex h-full w-80 max-w-[85%] flex-col bg-surface"
-            >
-              <button
-                onClick={() => setDrawerOpen(false)}
-                aria-label="Close menu"
-                className="absolute right-4 top-5 flex h-9 w-9 items-center justify-center rounded-full border border-line text-ink"
-              >
-                <X size={16} />
-              </button>
-              <SidebarContent onNavigate={() => setDrawerOpen(false)} />
-            </motion.div>
-          </div>
-        )}
-      </AnimatePresence>
-
       {/* Content */}
       <main className="lg:pl-64">
-        <div className="mx-auto w-full max-w-6xl px-4 py-8 sm:px-6 lg:px-10 lg:py-10">
+        <div className="mx-auto w-full max-w-6xl px-4 pb-24 pt-8 sm:px-6 lg:px-10 lg:py-10">
           <Outlet />
         </div>
       </main>
+
+      {/* Mobile bottom nav */}
+      <AdminBottomNav />
     </div>
   )
 }
